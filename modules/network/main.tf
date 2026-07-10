@@ -8,6 +8,9 @@ resource "aws_subnet" "this" {
 
     vpc_id = aws_vpc.internal_vpc.id
     cidr_block = each.value.cidr
+    tags = merge(var.tags, {
+    type = each.value.is_public ? "public" : "private"
+    })
 }
 
 # Definicion de la security group
@@ -57,7 +60,7 @@ resource "aws_internet_gateway" "igw" {
 # NAT Gateway
 resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.this["public"].id
+  subnet_id     = [for k, v in aws_subnet.this : v.id if v.tags["type"] == "public"][0] # filtro dinamico 
 }
 
 # Definicion de la route table publica
