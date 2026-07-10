@@ -1,16 +1,16 @@
 variable "region" {
   description = "region de la cuenta root"
-  type = string
+  type        = string
 }
 
 variable "access_key" {
   description = "clave de acceso"
-  type = string
+  type        = string
 }
 
 variable "secret_key" {
-    description = "clave secreta de acceso"
-    type = string
+  description = "clave secreta de acceso"
+  type        = string
 }
 
 variable "tags" {

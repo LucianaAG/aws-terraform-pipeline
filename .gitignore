@@ -8,3 +8,4 @@ terraform.tfvars
 **/state.json
 **/.terraform/
 **/.terraform.lock.hcl
+readme.md
