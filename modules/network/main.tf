@@ -60,7 +60,7 @@ resource "aws_internet_gateway" "igw" {
 # NAT Gateway
 resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = [for k, v in aws_subnet.this : v.id if v.tags["type"] == "public"][0] # filtro dinamico 
+  subnet_id     = [for k, v in aws_subnet.this : v.id if v.tags["type"] == "public"][0]
 }
 
 # Definicion de la route table publica
