@@ -1,18 +1,28 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
     }
   }
 }
 
+data "tls_certificate" "hcp" {
+  url = "https://app.terraform.io/.well-known/openid-configuration"
+}
+
 # OIDC provider le dice a AWS que confíe en HCP para levantar la infra
+
 resource "aws_iam_openid_connect_provider" "hcp" {
   url = "https://app.terraform.io"
 
   client_id_list = ["aws.workload.identity"]
 
-  thumbprint_list = ["9e99a48a9960b14926bb7f3b02e22da2b0ab7280"]
+  thumbprint_list = [data.tls_certificate.hcp.certificates[0].sha1_fingerprint]
 }
 
 # rol que HCP va a asumir
