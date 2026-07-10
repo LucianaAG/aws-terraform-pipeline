@@ -9,7 +9,7 @@ subnets = {
   }
 
   "prod_private_subnet" = {
-    cidr = "172.16.2.0/24"
+    cidr = "172.16.3.0/24"
     is_public = false
   }
 }
