@@ -42,8 +42,8 @@ resource "aws_iam_role" "hcp_role" {
           StringEquals = {
             "app.terraform.io:aud" = "aws.workload.identity"
           }
-          StringLike = {
-            "app.terraform.io:sub" = "organization:aws-infra-portfolio:project:*:workspace:aws-*:run_phase:*"
+          "StringLike" = {
+            "app.terraform.io:sub" = "organization:aws-infra-portfolio:project:Default Project:workspace:*:run_phase:*"
           }
         }
       }
