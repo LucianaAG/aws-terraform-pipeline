@@ -33,7 +33,7 @@ resource "aws_iam_role" "hcp_role" {
             "app.terraform.io:aud" = "aws.workload.identity"
           }
           StringLike = {
-            "app.terraform.io:sub" = "organization:oci-infra-portfolio:project:*:workspace:aws-*:run_phase:*"
+            "app.terraform.io:sub" = "organization:aws-infra-portfolio:project:*:workspace:aws-*:run_phase:*"
           }
         }
       }
