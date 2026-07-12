@@ -29,12 +29,6 @@ resource "aws_iam_instance_profile" "ssm_profile" {
   role = aws_iam_role.ssm_role.name
 }
 
-# data source para obtener las zonas de disponibilidad
-
-data "aws_availability_zones" "available" {
-    state = "available"
-}
-
 # data source para obtener la imagen de SO compatible con la arq de vm elegida
 
 data "aws_ami" "amazon_linux" {
@@ -49,7 +43,6 @@ data "aws_ami" "amazon_linux" {
 
 resource "aws_instance" "server" {
   subnet_id              = var.subnet_id
-  availability_zone      = data.aws_availability_zones.available.names[0]
   ami                    = data.aws_ami.amazon_linux.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [var.security_group_id]
