@@ -7,6 +7,7 @@ variable "subnets" {
   type = map(object({
     cidr      = string
     is_public = bool
+    availability_zone = string
   }))
 }
 

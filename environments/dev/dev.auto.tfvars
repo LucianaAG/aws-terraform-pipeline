@@ -6,11 +6,13 @@ subnets = {
   "dev_public_subnet" = {
     cidr = "172.16.2.0/24"
     is_public = true
+    availability_zone = "us-east-1a"
   }
 
   "dev_private_subnet" = {
     cidr = "172.16.3.0/24"
     is_public = false
+    availability_zone = "us-east-1a"
   }
 }
 
