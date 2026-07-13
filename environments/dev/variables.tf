@@ -25,3 +25,10 @@ variable "instance_type" {
   description = "configuracion de la instancia"
   type = string
 }
+
+variable "instances" {
+  description = "Mapa de instancias con su subnet asignada"
+  type = map(object({
+    subnet_key = string
+  }))
+}

@@ -18,4 +18,5 @@ module "compute" {
   security_group_id = module.network.security_group_id
   instance_type     = var.instance_type
   tags              = var.tags
+  instances = var.instances
 }
