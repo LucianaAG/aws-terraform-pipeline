@@ -27,6 +27,6 @@ module "alb" {
 
   vpc_id = module.network.vpc_id
   subnet_ids   = [for k, v in module.network.subnet_ids : v if contains(["prod_public_subnet_az1", "prod_second_public_subnet_az2"], k)]
-  instance_ids = values(module.compute.instance_ids)
+  instance_ids = module.compute.instance_ids
   tags         = var.tags
 }

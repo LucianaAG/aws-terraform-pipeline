@@ -12,7 +12,7 @@ variable "subnet_ids" {
 # de tipo list tambien porque recibe multiples instancias
 variable "instance_ids" {
   description = "ids de las instancias entre las cuales reparte el trafico"
-  type        = list(string)
+  type        = map(string)
 }
 
 variable "tags" {

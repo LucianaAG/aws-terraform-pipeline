@@ -67,7 +67,7 @@ resource "aws_lb_target_group" "target_group" {
 
 # registro de las instancias en el target_group, sin esto, el target group está vacio
 resource "aws_lb_target_group_attachment" "this" {
-  for_each = toset(var.instance_ids)
+  for_each = var.instance_ids
 
   target_group_arn = aws_lb_target_group.target_group.arn
   target_id = each.value
