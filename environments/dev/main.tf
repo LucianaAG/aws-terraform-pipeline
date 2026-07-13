@@ -14,7 +14,7 @@ module "compute" {
   source = "../../modules/compute"
 
   env = "dev"
-  subnet_ids         = module.network.subnet_ids["dev_public_subnet"]
+  subnet_ids         = module.network.subnet_ids
   security_group_id = module.network.security_group_id
   instance_type     = var.instance_type
   tags              = var.tags
