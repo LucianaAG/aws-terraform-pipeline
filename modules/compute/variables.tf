@@ -1,8 +1,3 @@
-variable "subnet_id" {
-    description = "id de la subnet para la instancia"
-    type = string
-}
-
 variable "instance_type" {
     description = "configuración de la instancia"
     type = string
@@ -23,4 +18,16 @@ variable "tags" {
 variable "env" {
   description = "nombre del entorno"
   type = string
+}
+
+variable "instances" {
+  description = "Mapa de instancias con sus subnets asignadas"
+  type = map(object({
+    subnet_key = string 
+  }))
+}
+
+variable "subnet_ids" {
+  description = "Mapa de IDs de subnets"
+  type        = map(string)
 }

@@ -9,7 +9,7 @@ terraform {
 
 terraform {
   cloud {
-    organization = "aws-infra-portfolio"
+    organization = "aws-infrastructure-portfolio"
 
     workspaces {
       name = "prod"

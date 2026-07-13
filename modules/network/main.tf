@@ -6,6 +6,7 @@ resource "aws_vpc" "internal_vpc" {
 resource "aws_subnet" "this" {
     for_each = var.subnets
 
+    availability_zone = each.value.availability_zone
     vpc_id = aws_vpc.internal_vpc.id
     cidr_block = each.value.cidr
     tags = merge(var.tags, {

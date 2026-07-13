@@ -42,7 +42,9 @@ data "aws_ami" "amazon_linux" {
 }
 
 resource "aws_instance" "server" {
-  subnet_id              = var.subnet_id
+  for_each = var.instances
+
+  subnet_id              = var.subnet_ids[each.value.subnet_key]
   ami                    = data.aws_ami.amazon_linux.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [var.security_group_id]

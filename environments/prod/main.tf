@@ -13,9 +13,20 @@ module "network" {
 module "compute" {
   source = "../../modules/compute"
 
+
   env = "prod"
-  subnet_id         = module.network.subnet_ids["prod_public_subnet"]
+  subnet_ids         = module.network.subnet_ids
   security_group_id = module.network.security_group_id
   instance_type     = var.instance_type
   tags              = var.tags
+  instances = var.instances
+}
+
+module "alb" {
+  source = "../../modules/alb"
+
+  vpc_id = module.network.vpc_id
+  subnet_ids   = [for k, v in module.network.subnet_ids : v if contains(["prod_public_subnet_az1", "prod_second_public_subnet_az2"], k)]
+  instance_ids = values(module.compute.instance_ids)
+  tags         = var.tags
 }

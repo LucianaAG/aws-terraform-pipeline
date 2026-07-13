@@ -19,3 +19,7 @@ tags = {
   "managed-by"  = "terraform"
   "project"     = "aws-terraform-pipeline"
 }
+
+instances = {
+  dev_instance = { subnet_key = "dev_public_subnet" }
+}
