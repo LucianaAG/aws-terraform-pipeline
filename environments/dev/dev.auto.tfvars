@@ -1,6 +1,6 @@
 vpc_cidr = "172.16.0.0/20"
 
-instance_type = "t2.micro"
+instance_type = "t3.micro"
 
 subnets = {
   "dev_public_subnet" = {
