@@ -29,6 +29,11 @@ resource "aws_iam_instance_profile" "ssm_profile" {
   role = aws_iam_role.ssm_role.name
 }
 
+# rol que le permite a la instancia EC2 descargar las imagenes docker almacenadas en el ECR
+resource "aws_iam_role_policy_attachment" "ecr_policy" {
+  role       = aws_iam_role.ssm_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+}
 # data source para obtener la imagen de SO compatible con la arq de vm elegida
 
 data "aws_ami" "amazon_linux" {

@@ -20,3 +20,8 @@ module "compute" {
   tags              = var.tags
   instances = var.instances
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+  tags   = var.tags
+}
