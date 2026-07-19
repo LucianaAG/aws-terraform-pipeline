@@ -25,6 +25,10 @@ resource "aws_iam_openid_connect_provider" "hcp" {
   thumbprint_list = [data.tls_certificate.hcp.certificates[0].sha1_fingerprint]
 }
 
+data "tls_certificate" "github" {
+  url = "https://token.actions.githubusercontent.com/.well-known/openid-configuration"
+}
+
 # OIDC entre Github Actions y AWS, le pide a AWS que confie en GitHub actions para que pushee las nuevas imagenes buildeadas
 # al repositorio de imagenes ECR
 resource "aws_iam_openid_connect_provider" "github" {
@@ -32,7 +36,7 @@ resource "aws_iam_openid_connect_provider" "github" {
 
   client_id_list = ["sts.amazonaws.com"]
 
-  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+  thumbprint_list = [data.tls_certificate.github.certificates[0].sha1_fingerprint]
 }
 
 # rol que HCP va a asumir

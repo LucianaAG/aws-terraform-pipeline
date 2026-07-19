@@ -45,6 +45,13 @@ resource "aws_security_group" "public_security_group" {
         protocol = "-1" # hacia cualquier puerto
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+    ingress {
+        from_port   = 3000
+        to_port     = 3000
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
 }
 
 # definicion del Elastic IP para el ngw
